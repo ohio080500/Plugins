@@ -63,7 +63,7 @@ export default {
     autoFetchUser: false,
     strategies: {
       google: {
-      clientId: process.env.CLIENT_ID,
+      clientId: process.env.GOOGLE_CLIENT_ID,
       scheme:'oauth2',
       endpoints:{
         authorization: 'https://accounts.google.com/o/oauth2/auth',
