@@ -107,7 +107,7 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Geolocation',
-          to: '/Geolocation'
+          to: '/geolocation'
         },
         
       ],
