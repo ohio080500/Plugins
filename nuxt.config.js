@@ -2,91 +2,89 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'spa',
-  /*
-  ** Headers of the page
-  */
+
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+
       {
-        rel: "stylesheet",
-        href: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
       }
     ],
     script: [
       {
-        src: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
       }
     ]
-    
   },
-  /*
-  ** Customize the progress-bar color
-  */
+
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
-  css: [
-  ],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-    '@nuxtjs/vuetify',
-  ],
-  /*
-  ** Nuxt.js modules
-  */
-  modules: ['@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
+
+  css: [],
+
+  plugins: [],
+
+  buildModules: ['@nuxtjs/vuetify'],
+
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
+
+  // ✅ IMPORTANT: makes env safe in Vercel
+  publicRuntimeConfig: {
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    REDIRECT_URI: process.env.REDIRECT_URI
+  },
+
+  axios: {
+    baseURL: '/'
+  },
+
   auth: {
-    redirect:{
+    redirect: {
       login: '/auth/signin',
       logout: '/auth/signin',
       callback: '/auth/callback',
-      home:'/'
+      home: '/'
     },
-    autoFetchUser: false,
+
     strategies: {
       google: {
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      scheme:'oauth2',
-      endpoints:{
-        authorization: 'https://accounts.google.com/o/oauth2/auth',
-        token: 'https://oauth2.googleapis.com/token',
-        userInfo: "https://www.googleapis.com/oauth2/v3/userinfo",
-      },
-      token:{
-        property: "access_token",
-        type: "Bearer",
-        maxAge: 1800,
-      },
-      responseType: "token id_token",
-      scope: ["openid","profile","email"],
-      redirectUri: process.env.REDIRECT_URI,
-      codeChallengeMethod: "",
-    },
-    },
+        clientId: process.env.GOOGLE_CLIENT_ID,
+
+        scheme: 'oauth2',
+
+        endpoints: {
+          authorization: 'https://accounts.google.com/o/oauth2/auth',
+          token: 'https://oauth2.googleapis.com/token',
+          userInfo: 'https://www.googleapis.com/oauth2/v3/userinfo'
+        },
+
+        token: {
+          property: 'access_token',
+          type: 'Bearer',
+          maxAge: 1800
+        },
+
+        responseType: 'token id_token',
+
+        scope: ['openid', 'profile', 'email'],
+
+        redirectUri: process.env.REDIRECT_URI
+      }
+    }
   },
 
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
@@ -104,14 +102,8 @@ export default {
       }
     }
   },
-  /*
-  ** Build configuration
-  */
+
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
+    extend(config, ctx) {}
   }
 }
