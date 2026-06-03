@@ -131,7 +131,7 @@ export default {
         await this.$auth.logout()
 
         // Redirect after logout
-        this.$router.push('/login')
+        this.$router.push('/auth/callback')
       } catch (error) {
         console.error('Logout error:', error)
       }
