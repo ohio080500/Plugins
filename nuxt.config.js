@@ -41,6 +41,10 @@ export default {
   */
   plugins: [
   ],
+  publicRuntimeConfig: {
+    googleClientId: process.env.GOOGLE_CLIENT_ID,
+    redirectUri: process.env.REDIRECT_URI,
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -63,7 +67,7 @@ export default {
     autoFetchUser: false,
     strategies: {
       google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientId: process.env.GOOGLE_CLIENT_ID,
       scheme:'oauth2',
       endpoints:{
         authorization: 'https://accounts.google.com/o/oauth2/auth',
