@@ -40,7 +40,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/auth.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,10 +53,6 @@ export default {
   modules: ['@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
-  publicRuntimeConfig: {
-    googleClientId: process.env.GOOGLE_CLIENT_ID || '',
-    redirectUri: process.env.REDIRECT_URI || 'http://localhost:3000/auth/callback',
-  },
   auth: {
     redirect:{
       login: '/auth/signin',
@@ -82,7 +77,7 @@ export default {
       },
       responseType: "token id_token",
       scope: ["openid","profile","email"],
-      redirectUri: process.env.REDIRECT_URI || 'http://localhost:3000/auth/callback',
+      redirectUri: process.env.REDIRECT_URI,
       codeChallengeMethod: "",
     },
     },
