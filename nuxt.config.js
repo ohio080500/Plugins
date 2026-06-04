@@ -40,6 +40,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/auth.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,8 +55,8 @@ export default {
     '@nuxtjs/auth-next'
   ],
   publicRuntimeConfig: {
-    googleClientId: process.env.GOOGLE_CLIENT_ID,
-    redirectUri: process.env.REDIRECT_URI,
+    googleClientId: process.env.GOOGLE_CLIENT_ID || '',
+    redirectUri: process.env.REDIRECT_URI || 'http://localhost:3000/auth/callback',
   },
   auth: {
     redirect:{
@@ -67,7 +68,7 @@ export default {
     autoFetchUser: false,
     strategies: {
       google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientId: '',
       scheme:'oauth2',
       endpoints:{
         authorization: 'https://accounts.google.com/o/oauth2/auth',
@@ -81,7 +82,7 @@ export default {
       },
       responseType: "token id_token",
       scope: ["openid","profile","email"],
-      redirectUri: process.env.REDIRECT_URI,
+      redirectUri: process.env.REDIRECT_URI || 'http://localhost:3000/auth/callback',
       codeChallengeMethod: "",
     },
     },
